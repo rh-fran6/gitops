@@ -19,7 +19,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .applicationNamespace }}  
+    namespace: {{ .argocdNamespace }}  
   project: {{ .applicationProject }}
   sources:
     - repoURL: {{ .repoUrl }}
