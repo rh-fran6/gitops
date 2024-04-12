@@ -14,8 +14,8 @@ metadata:
 {{- end }} 
   name: {{ .appName }}-application
   namespace: {{ $appNamespace }}
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  # finalizers:
+  # - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
