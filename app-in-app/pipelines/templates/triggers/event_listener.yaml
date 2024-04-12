@@ -1,0 +1,22 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: {{ .Values.event_listener_name }}
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - name: vote-trigger
+      interceptors:
+        - ref:
+            name: "github"
+          params:
+            - name: "secretRef"
+              value:
+                secretName: {{ .Values.externalsecrets.webhookexternalsecretname }}-value
+                secretKey: webhookSecret
+            - name: "eventTypes"
+              value: ["push"]
+      bindings:
+        - ref: vote-app
+      template:
+        ref: vote-app

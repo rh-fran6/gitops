@@ -1,0 +1,73 @@
+apiVersion: operator.external-secrets.io/v1alpha1
+kind: OperatorConfig
+metadata:
+  name: external-secrets-operator
+  labels:
+    app: external-secrets-operator
+    operator: external-secrets-operator
+    helm.sh/chart: eso-operator-patch-1.0.0
+    app.kubernetes.io/name: eso-operator-patch
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "v0.9.11"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  certController:
+    create: true
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/external-secrets/external-secrets
+      tag: v0.9.10
+    rbac:
+      create: true
+    requeueInterval: 5m
+    serviceAccount:
+      create: true
+      name: ''
+      podLabels:
+        podLabels:
+        app: external-secrets-operator
+        operator: external-secrets-operator
+        helm.sh/chart: eso-operator-patch-1.0.0
+        app.kubernetes.io/name: eso-operator-patch
+        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/version: "v0.9.11"
+        app.kubernetes.io/managed-by: Helm
+  concurrent: 1
+  crds:
+    createClusterExternalSecret: false
+    createClusterSecretStore: false
+  createOperator: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/external-secrets/external-secrets
+    tag: v0.9.10
+  installCRDs: false
+  leaderElect: false
+  rbac:
+    create: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+  scopedRBAC: false
+  serviceAccount:
+    create: true
+    name: ''
+  webhook:
+    certCheckInterval: 5m
+    certDir: /tmp/certs
+    create: true
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/external-secrets/external-secrets
+      tag: v0.9.10
+    rbac:
+      create: true
+    replicaCount: 1
+    serviceAccount:
+      create: true
+      name: ''

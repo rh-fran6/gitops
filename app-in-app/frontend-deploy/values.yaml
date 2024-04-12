@@ -1,0 +1,4 @@
+appName: pipeline-vote-ui
+domainName: apps.dd-aro.eastus.aroapp.io
+routeName: vote
+imageName: quay.io/fanyaegb/pipeline-vote-ui:prod

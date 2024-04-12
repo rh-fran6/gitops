@@ -1,0 +1,44 @@
+
+operators:
+  - name: openshift-pipelines
+    namespace: openshift-operators
+    channel: pipelines-1.14
+    installPlanApproval: Automatic
+    source: redhat-operators
+    sourceNamespace: openshift-marketplace
+    operatorName: openshift-pipelines-operator-rh
+
+  - name: external-secrets-operator
+    namespace: openshift-operators
+    channel: stable
+    installPlanApproval: Automatic
+    source: community-operators 
+    sourceNamespace: openshift-marketplace
+    operatorName: external-secrets-operator
+
+rbac_roles:
+  read_client_id: Y2ZhMjI0YWQtMzcwZS00MjhhLWFlMjctYmMxMTIyMzQ0NWNiCg==
+  read_client_secret: RDFrOFF+cX45YjFRTEx3LktEUUdDN3FSSlhSaWpxZHhPYUI1Z2NNNgo=
+
+eso:
+  tenant_id: 64dc69e4-d083-49fc-9569-ebece1dd1408
+  vault_url: https://dd-aro-cluster-akv-demo.vault.azure.net
+
+externalsecrets:
+  clustersecretstorename: akv-clustersecretstore
+  esosecretname: akv-eso-secret-name
+  
+  pipelineexternalsecretname: pipeline-secret-akv-read
+  webhookexternalsecretname: pipeline-secret-akv-read
+  appexternalsecretname: application-secret-akv-read
+  pipelinesecretstorename: akv-pipeline-secretstore
+  pipelinesecretname: akv-secret-read-pipeline
+  webhooksecretname: akv-secret-read-webhook
+  operatornamespace: openshift-operators
+  appsecretname: app-secret-akv-read
+  apptargetsecret: akv-app-secret
+  webhooktargetsecret: akv-webhook-secret
+  registryexternalsecretname: registry-secret-akv-read
+  registrytargetsecret: akv-registry-secret
+  argocdsecretstorename: akv-argocd-secretstore
+  argocdsecretname: akv-secret-read-pipeline

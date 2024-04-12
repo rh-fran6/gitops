@@ -1,0 +1,10 @@
+
+event_listener_name: vote-app
+
+externalsecrets:
+  pipelinesnamespace: demo-pipelines
+  webhookexternalsecretname: webhook-secret
+  registryexternalsecretname: quay-registry
+
+outputimagerepo: quay.io/fanyaegb
+appnamespace: tenant-app

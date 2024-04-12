@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-config
+  namespace: {{ .Values.externalsecrets.tenantappargocdnamespace }}
+  labels:
+    app.kubernetes.io/name: argocd-image-updater-config
+    app.kubernetes.io/part-of: argocd-image-updater
+
+data:
+  log.level: debug
+  registries.conf: |
+    registries:
+    - name: Quay Container Registry
+      api_url: https://quay.io
+      prefix: quay.io
+      ping: no
+      credentials: pullsecret:{{ .Values.externalsecrets.tenantappargocdnamespace }}/{{ .Values.externalsecrets.gitreposecret }}

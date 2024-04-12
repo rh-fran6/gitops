@@ -1,0 +1,2 @@
+appName: pipeline-vote-api
+imageName: quay.io/fanyaegb/pipeline-vote-api:prod

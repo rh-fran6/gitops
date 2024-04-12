@@ -1,0 +1,63 @@
+groups:
+- name: networking-dev-group
+  users:
+  - demo-user
+- name: networking-ops-group
+  users:
+  - demo-user
+- name: devops-dev-group
+  users:
+  - demo-user
+- name: devops-ops-group
+  users:
+  - demo-user
+- name: operators-dev-group
+  users:
+  - demo-user
+- name: operators-ops-group
+  users:
+  - demo-user
+- name: security-dev-group
+  users:
+  - demo-user
+- name: security-ops-group
+  users:
+  - demo-user
+- name: prod-dev-group
+  users:
+  - demo-user
+- name: prod-ops-group
+  users:
+  - demo-user
+- name: dev-dev-group
+  users:
+  - demo-user
+- name: dev-ops-group
+  users:
+  - demo-user
+
+
+replicaCount: 1
+## Operator Install Helm Chart ##
+
+externalsecrets:
+  clustersecretstorename: akv-clustersecretstore
+  esosecretname: akv-eso-secret-name
+  registryexternalsecretname: quay-registry
+  tenantappargocdnamespace: tenant-apps
+  webhookexternalsecretname: webhook-secret
+  pipelinesnamespace: devops
+  pipelinessecretname: pipelines-secret
+  gitreposecret: git-secret
+  
+
+
+
+
+
+
+
+
+
+
+
