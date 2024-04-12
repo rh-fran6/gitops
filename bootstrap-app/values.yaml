@@ -31,31 +31,31 @@ argocdInstances:
 applications:
   ##  Applications in platform-admin namespace
   - appName: networking
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: platform-admin
     applicationProject: networking
     applicationNamespace: networking
   - appName: devops
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: platform-admin
     applicationProject: devops
     applicationNamespace: devops
   - appName: pipelines
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: platform-admin
     applicationProject: devops
     applicationNamespace: devops
   - appName: operators
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: platform-admin
     applicationProject: operators
     applicationNamespace: operators
   - appName: security
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: platform-admin
     applicationProject: security
@@ -63,7 +63,7 @@ applications:
 
   ##  Applications in application namespace
   - appName: pipeline-prod-frontend
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     imageName: quay.io/fanyaegb/pipeline-vote-ui:prod
     branch: main
     argocdNamespace: tenant-apps
@@ -73,7 +73,7 @@ applications:
   - appName: pipeline-prod-backend 
     remoteAppNamespace: tenant-apps
     imageName: quay.io/fanyaegb/pipeline-vote-api:prod
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: tenant-apps
     applicationProject: prod
@@ -98,7 +98,7 @@ applications:
   #   applicationNamespace: pipeline-dev-backend
 
   - appName: argocdimageupdater
-    repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+    repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: tenant-apps
     applicationProject: prod
