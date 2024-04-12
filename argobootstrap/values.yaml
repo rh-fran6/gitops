@@ -1,0 +1,25 @@
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+
+applications:
+  ##  Applications in platform-admin namespace
+  - appName: platform-admin
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: platform-admin
+    appPath: bootstrap-app
+
+  - appName: tenant-apps
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: tenant-apps
+    applicationProject: default
+    applicationNamespace: tenant-apps
+    appPath: bootstrap-app
+  
+
+
+
