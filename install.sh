@@ -4,7 +4,7 @@ aro-login
 
 echo "Starting..."
 
-helm template 00-gitops-install
+helm install gitops-install 00-gitops-install
 
 echo "Waiting for 3 minutes"
 
@@ -13,7 +13,7 @@ echo ""
 
 sleep 60
 
-helm template 01-argobootstrap
+helm install cluster-bootstrap 01-argobootstrap
 
 echo "Ending..."
 
