@@ -2,7 +2,7 @@
 argocdInstances:
   - name: platform-admin
     defaultRbacPolicy: role:none      
-    rbacScopes: '[groups]'
+    rbacScopes: "'[groups]'"
     projects:
     - name: networking
       sourceRepos: 
@@ -19,7 +19,7 @@ argocdInstances:
 
   - name: tenant-apps
     defaultRbacPolicy: role:none
-    rbacScopes: '[groups]'
+    rbacScopes: "'[groups]'"
     projects:
     - name: prod
       sourceRepos: 
