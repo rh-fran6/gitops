@@ -4,12 +4,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: {{ $v.name }}
-  namespace: {{ $value.name }}
+  namespace: {{ $v.argocd }}
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  description: {{ $v.name }} GitOps Project
+  description: {{ $v.name }} GitOps Project in {{ $v.argocd }} Argo Instance
   destinations:
   - namespace: '*'
     server: '*'

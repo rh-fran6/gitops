@@ -5,15 +5,19 @@ argocdInstances:
     rbacScopes: "'[groups]'"
     projects:
     - name: networking
+      argocd: platform-admin
       sourceRepos: 
       - https://github.com/rh-fran6/gitops.git
     - name: devops
+      argocd: platform-admin
       sourceRepos: 
       - https://github.com/rh-fran6/gitops.git
     - name: operators
+      argocd: platform-admin
       sourceRepos: 
       - https://github.com/rh-fran6/gitops.git
     - name: security
+      argocd: platform-admin
       sourceRepos: 
       - https://github.com/rh-fran6/gitops.git 
 
@@ -22,9 +26,11 @@ argocdInstances:
     rbacScopes: "'[groups]'"
     projects:
     - name: prod
+      argocd: tenant-apps
       sourceRepos: 
       - git@github.com:rh-fran6/argocd-gitops.git
     - name: dev
+      argocd: tenant-apps
       sourceRepos: 
       - "'*'"
 
