@@ -25,11 +25,11 @@ spec:
     automated: {}
     retry:
       limit: 20
-    managedNamespaceMetadata:
-      labels:
-        openshift.io/cluster-monitoring: "true"
-        argocd.argoproj.io/managed-by: {{ .argocdNamespace }}
-      annotations:
+    # managedNamespaceMetadata:
+    #   labels:
+    #     openshift.io/cluster-monitoring: "true"
+    #     argocd.argoproj.io/managed-by: {{ .argocdNamespace }}
+    #   annotations:
 {{- if .imageName }}
     automated:
       prune: true
