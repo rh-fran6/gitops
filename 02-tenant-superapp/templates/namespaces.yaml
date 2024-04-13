@@ -1,12 +1,12 @@
-# {{- range $key, $value := .Values.argocdInstances }}
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "-1"
-#   labels:
-#         openshift.io/cluster-monitoring: "true"
-#         argocd.argoproj.io/managed-by: openshift-gitops
-#   name: {{ $value.name}}
-# ---
-# {{- end }}
+{{- range $key, $value := .Values.applications }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+        openshift.io/cluster-monitoring: "true"
+        argocd.argoproj.io/managed-by: {{ $value.argocdNamespace}}
+  name: {{ $value.applicationNamespace }}
+---
+{{- end }}
