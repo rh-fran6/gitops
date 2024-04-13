@@ -41,8 +41,8 @@ spec:
 {{- end }}    
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
-      - ApplyOutOfSyncOnly=true
-      - RespectIgnoreDifferences=true
+      # - PruneLast=true
+      # - ApplyOutOfSyncOnly=true
+      # - RespectIgnoreDifferences=true
 ---
 {{- end }}
