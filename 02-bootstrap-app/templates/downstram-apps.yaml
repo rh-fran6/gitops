@@ -13,13 +13,13 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
 {{- end }} 
   name: {{ .appName }}-application
-  namespace: {{ $appNamespace }}
+  namespace: {{ .argocdNamespace }}
   # finalizers:
   # - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .argocdNamespace }}  
+    namespace: {{ .applicationNamespace }}  
   project: {{ .applicationProject }}
   sources:
     - repoURL: {{ .repoUrl }}
