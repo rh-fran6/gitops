@@ -6,16 +6,16 @@ argocdInstances:
     projects:
     - name: networking
       sourceRepos: 
-      - git@github.com:rh-fran6/argocd-gitops.git
+      - https://github.com/rh-fran6/gitops.git
     - name: devops
       sourceRepos: 
-      - git@github.com:rh-fran6/argocd-gitops.git
+      - https://github.com/rh-fran6/gitops.git
     - name: operators
       sourceRepos: 
-      - git@github.com:rh-fran6/argocd-gitops.git
+      - https://github.com/rh-fran6/gitops.git
     - name: security
       sourceRepos: 
-      - git@github.com:rh-fran6/argocd-gitops.git  
+      - https://github.com/rh-fran6/gitops.git 
 
   - name: tenant-apps
     defaultRbacPolicy: role:none
