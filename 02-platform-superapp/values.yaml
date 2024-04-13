@@ -1,0 +1,118 @@
+## ArgoCD Parameters ##
+argocdInstances:
+  - name: platform-admin
+    defaultRbacPolicy: role:none      
+    rbacScopes: "'[groups]'"
+    projects:
+    - name: networking
+      argocd: platform-admin
+      sourceRepos: 
+      - https://github.com/rh-fran6/gitops.git
+    - name: devops
+      argocd: platform-admin
+      sourceRepos: 
+      - https://github.com/rh-fran6/gitops.git
+    - name: operators
+      argocd: platform-admin
+      sourceRepos: 
+      - https://github.com/rh-fran6/gitops.git
+    - name: security
+      argocd: platform-admin
+      sourceRepos: 
+      - https://github.com/rh-fran6/gitops.git 
+
+  # - name: tenant-apps
+  #   defaultRbacPolicy: role:none
+  #   rbacScopes: "'[groups]'"
+  #   projects:
+  #   - name: prod
+  #     argocd: tenant-apps
+  #     sourceRepos: 
+  #     - git@github.com:rh-fran6/argocd-gitops.git
+  #   - name: dev
+  #     argocd: tenant-apps
+  #     sourceRepos: 
+  #     - "'*'"
+
+applications:
+  ##  Applications in platform-admin namespace
+  - appName: networking
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-admin
+    applicationProject: networking
+    applicationNamespace: networking
+  - appName: devops
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-admin
+    applicationProject: devops
+    applicationNamespace: devops
+  - appName: pipelines
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-admin
+    applicationProject: devops
+    applicationNamespace: devops
+  - appName: operators
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-admin
+    applicationProject: operators
+    applicationNamespace: operators
+  - appName: security
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-admin
+    applicationProject: security
+    applicationNamespace: security
+
+  ##  Applications in application namespace
+  # - appName: pipeline-prod-frontend
+  #   repoUrl: https://github.com/rh-fran6/gitops.git
+  #   imageName: quay.io/fanyaegb/pipeline-vote-ui:prod
+  #   branch: main
+  #   argocdNamespace: tenant-apps
+  #   applicationProject: prod
+  #   applicationNamespace: pipeline-prod-frontend
+
+  # - appName: pipeline-prod-backend 
+  #   remoteAppNamespace: tenant-apps
+  #   imageName: quay.io/fanyaegb/pipeline-vote-api:prod
+  #   repoUrl: https://github.com/rh-fran6/gitops.git
+  #   branch: main
+  #   argocdNamespace: tenant-apps
+  #   applicationProject: prod
+  #   applicationNamespace: pipeline-prod-backend
+
+  # - appName: pipeline-dev-frontend    
+  #   remoteAppNamespace: tenant-apps
+  #   imageName: quay.io/fanyaegb/pipeline-vote-ui:prod
+  #   repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+  #   branch: dev
+  #   argocdNamespace: tenant-apps
+  #   applicationProject: dev
+  #   applicationNamespace: pipeline-dev-frontend
+
+  # - appName: pipeline-dev-backend
+  #   remoteAppNamespace: tenant-apps
+  #   imageName: quay.io/fanyaegb/pipeline-vote-api:dev
+  #   repoUrl: git@github.com:rh-fran6/argocd-gitops.git
+  #   branch: dev
+  #   argocdNamespace: tenant-apps
+  #   applicationProject: dev
+  #   applicationNamespace: pipeline-dev-backend
+
+  # - appName: argocdimageupdater
+  #   repoUrl: https://github.com/rh-fran6/gitops.git
+  #   branch: main
+  #   argocdNamespace: tenant-apps
+  #   applicationProject: prod
+  #   applicationNamespace: tenant-apps
+
+
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+  clusterDomain: apps.dd-aro.eastus.aroapp.io
+

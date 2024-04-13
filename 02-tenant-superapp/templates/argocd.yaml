@@ -1,0 +1,152 @@
+{{- range $key, $value := .Values.argocdInstances }}
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: {{ $value.name }}-argocd
+  namespace: {{ $value.name }}
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  server:
+    autoscale:
+      enabled: false
+    grpc:
+      ingress:
+        enabled: false
+    ingress:
+      enabled: false
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 125m
+        memory: 128Mi
+    route:
+      enabled: true
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: reencrypt
+    service:
+      type: ''
+  grafana:
+    enabled: false
+    ingress:
+      enabled: false
+    route:
+      enabled: false
+  monitoring:
+    enabled: false
+  notifications:
+    enabled: false
+  prometheus:
+    enabled: false
+    ingress:
+      enabled: false
+    route:
+      enabled: false
+  initialSSHKnownHosts: {}
+  sso:
+    dex:
+      openShiftOAuth: true
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 128Mi
+    provider: dex
+  applicationInstanceLabelKey: argocd.argoproj.io/instance
+  applicationSet:
+    resources:
+      limits:
+        cpu: '2'
+        memory: 1Gi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+    webhookServer:
+      ingress:
+        enabled: false
+      route:
+        enabled: false
+  rbac:
+    defaultPolicy: {{ $value.defaultRbacPolicy }}
+    policy: |
+      p, role:none, applications, get, */*, deny
+      p, role:none, certificates, get, *, deny
+      p, role:none, clusters, get, *, deny
+      p, role:none, repositories, get, *, deny
+      p, role:none, projects, get, *, deny
+      p, role:none, accounts, get, *, deny
+      p, role:none, gpgkeys, get, *, deny
+{{- range $k, $v := $value.projects }}
+      p, role:{{ $v.name }}-dev-role, applications, get, {{ $value.name }}/*, allow
+      p, role:{{ $v.name }}-dev-role, clusters, get, https://kubernetes.default.svc, allow
+      p, role:{{ $v.name }}-ops-role, applications, get, {{ $v.name }}/*, allow
+      p, role:{{ $v.name }}-ops-role, clusters, get, *, allow
+      g, {{ $v.name }}-dev-group, role:{{ $v.name }}-dev-role
+      g, {{ $v.name }}-ops-group, role:{{ $v.name }}-ops-role
+{{- end }}
+      g, application-1-ops, role:application-1-ops
+      g, system:cluster-admins, role:admin
+      g, argocdadmins, role:admin
+      g, argocdaudit, role:readonly
+    scopes: {{ $value.rbacScopes }}
+  repo:
+    resources:
+      limits:
+        cpu: '1'
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+  resourceExclusions: |
+    - apiGroups:
+      - tekton.dev/v1
+      kinds:
+      - PipelineRun
+    - apiGroups:
+      - tekton.dev/v1beta1
+      kinds:
+      - TaskRun
+
+  resourceHealthChecks:
+    - check: |
+        hs = {}
+        if obj.status ~= nil then
+          if obj.status.phase ~= nil then
+            if obj.status.phase == "Pending" then
+              hs.status = "Healthy"
+              hs.message = obj.status.phase
+              return hs
+            elseif obj.status.phase == "Bound" then
+              hs.status = "Healthy"
+              hs.message = obj.status.phase
+              return hs
+            end
+          end
+        end
+        hs.status = "Progressing"
+        hs.message = "Waiting for PVC"
+        return hs
+      kind: PersistentVolumeClaim
+  ha:
+    enabled: false
+  tls:
+    ca: {}
+  redis: {}
+  controller:
+    processors: {}
+    resources:
+      limits:
+        cpu: '4'
+        memory: 4Gi
+      requests:
+        cpu: 500m
+        memory: 2Gi
+    sharding: {}
+---
+{{- end }}

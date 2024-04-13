@@ -10,7 +10,7 @@ applications:
     argocdNamespace: openshift-gitops
     applicationProject: default
     applicationNamespace: platform-admin
-    appPath: 02-bootstrap-app
+    appPath: 02-platform-superapp
 
   - appName: tenant-apps
     repoUrl: https://github.com/rh-fran6/gitops.git
@@ -18,7 +18,7 @@ applications:
     argocdNamespace: tenant-apps
     applicationProject: default
     applicationNamespace: tenant-apps
-    appPath: 02-bootstrap-app
+    appPath: 02-tenant-superapp
   
 
 
