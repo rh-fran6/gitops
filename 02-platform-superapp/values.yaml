@@ -110,19 +110,19 @@ applications:
   #   applicationProject: prod
   #   applicationNamespace: tenant-apps
 
-argoInstanceName: platform-admin
+# argoInstanceName: platform-admin
 
-managedNamespaces:
-- name: openshift-operators
-- name: openshift-gitops
-- name: openshift-pipelines
+# managedNamespaces:
+# - name: openshift-operators
+# - name: openshift-gitops
+# - name: openshift-pipelines
 
-namespace:
-  namespaceNames:
-  - name: security
-  - name: networking
-  - name: operators
-  - name: devops
+# namespace:
+#   namespaceNames:
+#   - name: security
+#   - name: networking
+#   - name: operators
+#   - name: devops
 
 global:
   openshiftGitopsNamespace: openshift-gitops
