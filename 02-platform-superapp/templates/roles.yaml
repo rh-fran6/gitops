@@ -1,0 +1,21 @@
+
+{{ $argoInstanceName := .Values.argoInstanceName }}
+{{- range $key, $value := .Values.managedNamespaces }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ $argoInstanceName }}-argo-role
+  namespace: {{ $value.name }}
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - Get
+  - List
+  - Watch
+  - Patch
+  - Create
+---
+{{- end }}

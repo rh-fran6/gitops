@@ -116,3 +116,8 @@ global:
   openshiftGitopsNamespace: openshift-gitops
   clusterDomain: apps.dd-aro.eastus.aroapp.io
 
+argoInstanceName: platform-admin
+managedNamespaces:
+- name: openshift-operators
+- name: openshift-gitops
+- name: openshift-pipelines
