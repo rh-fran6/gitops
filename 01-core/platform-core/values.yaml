@@ -13,6 +13,7 @@ namespace:
   - name: operators
   - name: devops
   - name: openshift-operators
+  - name: openshift-gitops
 
 global:
   openshiftGitopsNamespace: openshift-gitops
