@@ -110,6 +110,17 @@ applications:
     applicationProject: prod
     applicationNamespace: tenant-apps
 
+namespace:
+  namespaceNames:
+  - name: prod
+  - name: dev
+
+argoInstanceName: tenant-apps
+
+managedNamespaces:
+- name: openshift-operators
+- name: openshift-gitops
+- name: openshift-pipelines
 
 
 global:

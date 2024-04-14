@@ -13,5 +13,6 @@ subjects:
 - kind: ServiceAccount
   name: {{ $argoNamespace }}-argocd-argocd-application-controller
   namespace: {{ $argoNamespace }}
+  
 ---
 {{- end }}

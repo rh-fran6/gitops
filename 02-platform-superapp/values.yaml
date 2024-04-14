@@ -110,14 +110,22 @@ applications:
   #   applicationProject: prod
   #   applicationNamespace: tenant-apps
 
+argoInstanceName: platform-admin
 
+managedNamespaces:
+- name: openshift-operators
+- name: openshift-gitops
+- name: openshift-pipelines
+
+namespace:
+  namespaceNames:
+  - name: security
+  - name: networking
+  - name: operators
+  - name: devops
 
 global:
   openshiftGitopsNamespace: openshift-gitops
   clusterDomain: apps.dd-aro.eastus.aroapp.io
 
-argoInstanceName: platform-admin
-managedNamespaces:
-- name: openshift-operators
-- name: openshift-gitops
-- name: openshift-pipelines
+

@@ -9,5 +9,6 @@ metadata:
         openshift.io/cluster-monitoring: "true"
         argocd.argoproj.io/managed-by: {{ $argoName }}
   name: {{ $value.name }}
+  
 ---
 {{- end }}
