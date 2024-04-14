@@ -7,7 +7,8 @@ metadata:
 {{- if .imageName }}
     argocd-image-updater.argoproj.io/image-list: image-alias={{ .imageName }}
     argocd-image-updater.argoproj.io/write-back-method: git 
-{{- end }} 
+{{- end }}     
+    argocd.argoproj.io/sync-wave: "1"
   name: {{ .appName }}-application
   namespace: {{ $appNamespace }}
   # finalizers:
@@ -25,11 +26,11 @@ spec:
     automated: {}
     retry:
       limit: 20
-    # managedNamespaceMetadata:
-    #   labels:
-    #     openshift.io/cluster-monitoring: "true"
-    #     argocd.argoproj.io/managed-by: {{ .argocdNamespace }}
-    #   annotations:
+    managedNamespaceMetadata:
+      labels:
+        openshift.io/cluster-monitoring: "true"
+        argocd.argoproj.io/managed-by: {{ .argocdNamespace }}
+      annotations:
 {{- if .imageName }}
     automated:
       prune: true
