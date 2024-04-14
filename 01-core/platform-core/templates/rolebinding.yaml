@@ -1,6 +1,6 @@
 {{ $argoNamespace := .Values.argoInstanceName }}
 {{- range $key, $value := .Values.managedNamespaces }}
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ $argoNamespace }}-argo-rolebinding
@@ -13,6 +13,6 @@ subjects:
 - kind: ServiceAccount
   name: {{ $argoNamespace }}-argocd-argocd-application-controller
   namespace: {{ $argoNamespace }}
-  
+
 ---
 {{- end }}

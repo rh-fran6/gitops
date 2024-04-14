@@ -17,6 +17,7 @@ rules:
   - Watch
   - Patch
   - Create
-  
+  - Update
+
 ---
 {{- end }}
