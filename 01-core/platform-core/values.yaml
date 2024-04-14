@@ -12,8 +12,8 @@ namespace:
   - name: networking
   - name: operators
   - name: devops
-  - name: openshift-operators
-  - name: openshift-gitops
+  # - name: openshift-operators
+  # - name: openshift-gitops
 
 global:
   openshiftGitopsNamespace: openshift-gitops
