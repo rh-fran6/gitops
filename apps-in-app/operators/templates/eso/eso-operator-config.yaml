@@ -1,6 +1,8 @@
 apiVersion: operator.external-secrets.io/v1alpha1
 kind: OperatorConfig
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
   name: external-secrets-operator
   labels:
     app: external-secrets-operator
