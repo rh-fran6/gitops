@@ -35,6 +35,14 @@ applications:
     applicationProject: default
     applicationNamespace: openshift-gitops
     appPath: 01-core/tenant-core
+
+  - appName: operator-install
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: openshift-gitops
+    appPath: 01-core/operator-install
   
 
 
