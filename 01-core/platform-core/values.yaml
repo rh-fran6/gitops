@@ -4,7 +4,7 @@ argoInstanceName: platform-admin
 managedNamespaces:
 - name: openshift-operators
 - name: openshift-gitops
-- name: openshift-pipelines
+# - name: openshift-pipelines
 
 namespace:
   namespaceNames:
