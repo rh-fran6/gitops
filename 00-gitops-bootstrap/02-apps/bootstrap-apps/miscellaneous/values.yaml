@@ -1,0 +1,18 @@
+argocdInstances:
+- name: openshift-gitops
+  namespace: openshift-gitops
+  dex: false
+- name: platform-hub
+  namespace: platform-hub
+  dex: true
+- name: tenant
+  namespace: tenant-argo-ns
+  dex: true
+- name: shared
+  namespace: shared
+  dex: true
+
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+  clusterDomain: apps.dd-rosa.xfvx.p1.openshiftapps.com

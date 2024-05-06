@@ -1,0 +1,25 @@
+## Namespace ArgoCD Application ##
+{{- range $key, $value := .Values.namespaceApplications }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $value.appName }}-application
+  namespace: {{ $value.argocdNamespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io/foreground
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $value.applicationNamespace }}  
+  project: {{ $value.applicationProject }}
+  sources:
+    - repoURL: {{ $value.repoUrl }}
+      targetRevision: {{ $value.branch }}
+      path: 02-apps/bootstrap-apps/{{ .appName }}
+  syncPolicy:
+    automated: {}
+    retry:
+      limit: 20
+      
+---
+{{- end }}

@@ -1,0 +1,35 @@
+
+platformNamespaces:
+  managedBy: platform-hub
+  namespaceNames:
+  ## Operator Namespaces ##
+  - name: external-secrets-operator
+  - name: openshift-pipelines
+  - name: cert-manager-operator
+  - name: openshift-logging
+
+  ## Application Namespaces
+  - name: pipeline-demo
+  - name: postgresql
+  - name: devops
+  - name: configs
+
+tenantNamespaces:
+  namespaceNames:
+  - name: tenants
+    managedBy: tenant-argo-ns
+  - name: tenant-app-1
+    managedBy: tenant-argo-ns
+  - name: tenant-app-2
+    managedBy: tenant-argo-ns
+  - name: tenant-app-3
+    managedBy: tenant-argo-ns
+
+
+sharedNamespaces:
+  namespaceNames:
+  - name: shared
+    managedBy: shared
+
+
+

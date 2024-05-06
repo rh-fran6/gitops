@@ -1,0 +1,23 @@
+## ArgoCD Projects ##
+{{- range $k, $v := $value.projects }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $v.name }}
+  namespace: {{ $v.namespace }}
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    # argocd.argoproj.io/sync-wave: "2"
+spec:
+  description: {{ $v.name }} GitOps Project in {{ $v.namespace }} Argo Instance
+  destinations:
+  - namespace: '*'
+    server: '*'
+  clusterResourceWhitelist:
+  - group: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+---
+{{- end }}
+

@@ -1,19 +1,73 @@
-#! /bin/bash
+#!/bin/bash
 
-aro-login
+set -eo pipefail
+
+export GITOPS_NAMESPACE="openshift-gitops-operator"
+export GITOPS_CHANNEL="gitops-1.10"
+
+rosa-login
 
 echo "Starting..."
 
-helm upgrade --install gitops-install 00-gitops-install -n default
+echo ""
 
-echo "Waiting for 3 minutes"
+echo "Creating Namespace $GITOPS_NAMESPACE..."
+cat <<EOF | oc apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: $GITOPS_NAMESPACE
+  annotations:
+    openshift.io/display-name: "OpenShift GitOps Operator"
+  labels:
+    openshift.io/cluster-monitoring: 'true'
+EOF
+
+echo "Creating Operator Group named $GITOPS_NAMESPACE in $GITOPS_NAMESPACE namespace..."
+cat <<EOF | oc apply -f -
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: $GITOPS_NAMESPACE
+  namespace: $GITOPS_NAMESPACE
+spec:
+  upgradeStrategy: Default
+EOF
+
+echo "Creating subscription named $GITOPS_NAMESPACE in $GITOPS_NAMESPACE namespace..."
+cat <<EOF | oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: $GITOPS_NAMESPACE
+  namespace: $GITOPS_NAMESPACE
+spec:
+  channel: $GITOPS_CHANNEL 
+  installPlanApproval: Automatic
+  name: openshift-gitops-operator 
+  source: redhat-operators 
+  sourceNamespace: openshift-marketplace 
+EOF
+
+
+echo "Waiting for Gitops to finish installation..."
 
 echo ""
 echo ""
 
-# sleep 90
+sleep 90
 
-helm upgade --install cluster-bootstrap 01-argobootstrap -n default
+echo "GitOps installation done..."
+
+echo ""
+
+echo "Starting cluster bootstrap..."
+
+echo ""
+
+helm upgrade --install cluster-bootstrap 00-gitops-bootstrap/bootstrap -n default
+
+echo ""
 
 echo "Ending..."
 

@@ -1,0 +1,33 @@
+{{- range $key, $value := .Values.tenantApplications }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+{{- if $value.imageName }}
+    argocd-image-updater.argoproj.io/image-list: backend={{ .imageName }}:{{ .applicationProject }}
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:{{ .argocdNamespace }}/git-secret
+    argocd-image-updater.argoproj.io/backend.update-strategy: latest
+    argocd-image-updater.argoproj.io/backend.helm.image-tag: backend.image.tag
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    # argocd.argoproj.io/sync-wave: "3"
+{{- end }} 
+  name: {{ $value.appName }}-application
+  namespace: {{ $value.argocdNamespace }}
+  # finalizers:
+  # - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $value.applicationNamespace }}  
+  project: {{ $value.applicationProject }}
+  sources:
+    - repoURL: {{ $value.repoUrl }}
+      targetRevision: {{ $value.branch }}
+      path: 02-apps/apps-in-app/{{ $value.path }}
+  syncPolicy:
+    automated: {}
+    retry:
+      limit: 20
+
+---
+{{- end }}

@@ -1,0 +1,30 @@
+
+operators:
+  - name: openshift-pipelines
+    namespace: openshift-operators
+    channel: pipelines-1.14
+    installPlanApproval: Automatic
+    source: redhat-operators
+    operatorGroup: false
+    sourceNamespace: openshift-marketplace
+    operatorName: openshift-pipelines-operator-rh
+
+  - name: external-secrets-operator
+    namespace: openshift-operators
+    channel: stable
+    installPlanApproval: Automatic
+    operatorGroup: false
+    source: community-operators 
+    sourceNamespace: openshift-marketplace
+    operatorName: external-secrets-operator
+
+  - name: cert-manager-operator
+    namespace: cert-manager-operator
+    channel: stable-v1.11
+    installPlanApproval: Automatic
+    operatorGroup: true
+    source: redhat-operators 
+    sourceNamespace: openshift-marketplace
+    operatorName: openshift-cert-manager-operator
+    operatorGroupNamespace: cert-manager-operator
+

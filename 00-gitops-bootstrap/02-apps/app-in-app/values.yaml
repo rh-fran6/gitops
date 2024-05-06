@@ -1,0 +1,95 @@
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+  clusterDomain: apps.dd-aro.eastus.aroapp.io
+
+projects:
+  - name: devops
+    namespace: platform-hub
+  - name: platform-config
+    namespace: platform-hub
+  - name: rbac
+    namespace: platform-hub
+  - name: miscellaneous
+    namespace: platform-hub
+  - name: security
+    namespace: platform-hub
+  - name: tenant-A
+    namespace: tenant-argo-ns
+  - name: tenant-B
+    namespace: tenant-argo-ns
+  - name: tenant-C
+    namespace: tenant-argo-ns
+  - name: shared-services
+    namespace: shared
+
+argocd:
+  - name: platform-hub
+    namespace: platform-hub
+  - name: tenant
+    namespace: tenant-argo-ns
+  - name: shared
+    namespace: shared
+
+platformApplications:
+  ##  Applications in platform-admin namespace
+  - appName: openshift-pipelines
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-hub
+    applicationProject: devops
+    applicationNamespace: openshift-pipelines
+
+  - appName: external-secrets
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: platform-hub
+    applicationProject: security
+    applicationNamespace: external-secrets-operator
+
+  - appName: argocd-image-updater
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: tenant
+    applicationProject: devops
+    applicationNamespace: tenant
+
+tenantApplications:
+  - appName: demo-pipeline-app-frontend
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: tenant-argo-ns
+    applicationProject: tenant-A
+    applicationNamespace: tenant-app-1
+    path: tenants/frontend-deploy
+
+  - appName: demo-pipeline-app-backend
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: tenant-argo-ns
+    applicationProject: tenant-A
+    applicationNamespace: tenant-app-1
+    path: tenants/backend-deploy
+
+  - appName: demo-hello-app
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: tenant-argo-ns
+    applicationProject: tenant-A
+    applicationNamespace: tenant-app-2
+    path: tenants/hello-world
+
+sharedApplications:
+  - appName: shared-services
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: shared
+    applicationProject: shared-services
+    applicationNamespace: shared
+    path: shared/postgresql
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+## Platform namespaces ##
+
+{{- range $key, $value := .Values.sharedNamespaces.namespaceNames }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+        openshift.io/cluster-monitoring: "true"
+        argocd.argoproj.io/managed-by: {{ $value.managedBy }}
+  name: {{ $value.name }}
+  
+---
+{{- end }}

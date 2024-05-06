@@ -1,0 +1,92 @@
+
+namespaceApplications:
+  ##  Applications in platform-admin namespace
+  - appName: namespaces
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: default
+
+localApplications:
+  - appName: operators
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: default
+
+  - appName: rbac
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: default
+
+  - appName: miscellaneous
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: default
+
+superApplications:
+  - appName: app-in-app
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: default
+    applicationNamespace: default
+  
+  # - appName: argocd-image-updater
+  #   repoUrl: https://github.com/rh-fran6/gitops.git
+  #   branch: main
+  #   argocdNamespace: openshift-gitops
+  #   applicationProject: default
+  #   applicationNamespace: default
+
+
+
+
+
+
+global:
+  openshiftGitopsNamespace: openshift-gitops
+  clusterDomain: apps.dd-rosa.xfvx.p1.openshiftapps.com
+
+
+## Remove later
+# projects:
+#   - name: devops
+#     namespace: platform-hub
+#   - name: platform-config
+#     namespace: platform-hub
+#   - name: rbac
+#     namespace: platform-hub
+#   - name: miscellaneous
+#     namespace: platform-hub
+#   - name: security
+#     namespace: platform-hub
+#   - name: tenant-A
+#     namespace: tenant-argo-ns
+#   - name: tenant-B
+#     namespace: tenant-argo-ns
+#   - name: tenant-C
+#     namespace: tenant-argo-ns
+#   - name: shared-services
+#     namespace: shared
+
+# ## Remove also
+# argocd:
+#   - name: platform-hub
+#     namespace: platform-hub
+#   - name: tenant
+#     namespace: tenant-argo-ns
+#   - name: shared
+#     namespace: shared
+
+
+
+
+
+
