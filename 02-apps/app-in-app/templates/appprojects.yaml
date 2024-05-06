@@ -1,5 +1,5 @@
 ## ArgoCD Projects ##
-{{- range $k, $v := .Value.projects }}
+{{- range $k, $v := .Values.projects }}
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
