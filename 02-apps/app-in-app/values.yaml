@@ -14,11 +14,11 @@ projects:
     namespace: openshift-gitops
   - name: security
     namespace: openshift-gitops
-  - name: tenant-A
+  - name: tenant-a
     namespace: tenant-argo-ns
-  - name: tenant-B
+  - name: tenant-b
     namespace: tenant-argo-ns
-  - name: tenant-C
+  - name: tenant-c
     namespace: tenant-argo-ns
   - name: shared-services
     namespace: tenant-argo-ns
@@ -59,7 +59,7 @@ tenantApplications:
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: tenant-argo-ns
-    applicationProject: tenant-A
+    applicationProject: tenant-a
     applicationNamespace: tenant-app-1
     path: tenants/frontend-deploy
 
@@ -67,7 +67,7 @@ tenantApplications:
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: tenant-argo-ns
-    applicationProject: tenant-A
+    applicationProject: tenant-a
     applicationNamespace: tenant-app-1
     path: tenants/backend-deploy
 
@@ -75,7 +75,7 @@ tenantApplications:
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
     argocdNamespace: tenant-argo-ns
-    applicationProject: tenant-A
+    applicationProject: tenant-a
     applicationNamespace: tenant-app-2
     path: tenants/hello-world
 
