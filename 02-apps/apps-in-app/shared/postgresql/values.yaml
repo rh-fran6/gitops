@@ -2,3 +2,5 @@
 global:
   hubClusterDomain: hub.example.com
   localCluster: local.example.com
+
+namespace: shared

@@ -42,12 +42,8 @@ projects:
     - https://github.com/rh-fran6/gitops.git
 
 argocd:
-  # - name: platform-hub
-  #   namespace: platform-hub
   - name: tenant
     namespace: tenant-argo-ns
-  # - name: shared
-  #   namespace: shared
 
 platformApplications:
   ##  Applications in platform-admin namespace
