@@ -14,7 +14,7 @@ spec:
   sources:
     - repoURL: {{ $value.repoUrl }}
       targetRevision: {{ $value.branch }}
-      path: apps-in-app/platform/{{ $value.appName }}
+      path: 02-apps/apps-in-app/platform/{{ $value.appName }}
   syncPolicy:
     automated: {}
     retry:
