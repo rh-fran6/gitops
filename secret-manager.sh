@@ -123,42 +123,12 @@ echo Successfully attached!
 echo "Creating Service Account ..."
 
 
-# Create Service Account for SA 
-# echo "Creating Service Account called $ESO_SA_NAME ..."
-# cat <<EOF | oc apply -f -
-# apiVersion: v1
-# kind: ServiceAccount
-# metadata:
-#   annotations:
-#     eks.amazonaws.com/role-arn: $ROLE_ARN
-#   name: $ESO_SA_NAME
-#   namespace: $ESO_NAMESPACE
-# EOF
-
-# echo "Creating ClusterSecretStore CR ..."
-
-# cat <<EOF | oc apply -f -
-# apiVersion: external-secrets.io/v1beta1
-# kind: ClusterSecretStore
-# metadata:
-#   name: $CLUSTERSECRETSTORE
-# spec:
-#   provider:
-#     aws:
-#       service: SecretsManager
-#       region: $AWS_REGION
-#       auth:
-#         jwt:
-#           serviceAccountRef:
-#             name: $ESO_SA_NAME
-# EOF
-
 # aws secretsmanager create-secret \
 #   --description "PostGress Demo Username" \
 #   --name secret/psqluname \
-#   --secret-string "testusernamt"
+#   --secret-string "xxxxxxxxx"
 
 # aws secretsmanager create-secret \
 #   --description "PostGress Demo Password" \
 #   --name secret/psqlpassword \
-#   --secret-string "testdeM0Passe79903238438"
+#   --secret-string "xxxxxxxxxxxxxxxxx"

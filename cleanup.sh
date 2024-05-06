@@ -49,16 +49,6 @@ aws iam delete-role --role-name "$ROLE_NAME" || true
 echo "Deleting IAM policy..."
 aws iam delete-policy --policy-arn "$POLICY_ARN" || true
 
-
-# Deleting secret
-echo "Deleting Service Account..."
-oc delete serviceaccount $ESO_SA_NAME -n $ESO_NAMESPACE || true
-
-# Deleting ClusterSecretStore
-echo "Deleting ClusterSecretStore..."
-oc delete clustersecretstore $CLUSTERSECRETSTORE || true
-
-
 clear
 
 # Output success message
