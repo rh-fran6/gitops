@@ -24,6 +24,8 @@ tenantNamespaces:
     managedBy: tenant-argo-ns
   - name: tenant-app-3
     managedBy: tenant-argo-ns
+  - name: tenant-argo-ns
+    managedBy: tenant-argo-ns
 
 
 sharedNamespaces:
