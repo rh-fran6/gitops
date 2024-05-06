@@ -44,7 +44,7 @@ externalsecrets:
   clustersecretstorename: akv-clustersecretstore
   esosecretname: akv-eso-secret-name
   registryexternalsecretname: quay-registry
-  tenantappargocdnamespace: tenant-apps
+  tenantappargocdnamespace: tenant-argo-ns
   webhookexternalsecretname: webhook-secret
   pipelinesnamespace: devops
   pipelinesecretname: pipelines-secret
