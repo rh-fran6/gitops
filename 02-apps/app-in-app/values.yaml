@@ -67,6 +67,13 @@ platformApplications:
     argocdNamespace: openshift-gitops
     applicationProject: devops
     applicationNamespace: openshift-gitops
+  
+  - appName: kyverno
+    repoUrl: https://github.com/rh-fran6/gitops.git
+    branch: main
+    argocdNamespace: openshift-gitops
+    applicationProject: security
+    applicationNamespace: openshift-gitops
 
 tenantApplications:
   - appName: demo-pipeline-app-frontend
