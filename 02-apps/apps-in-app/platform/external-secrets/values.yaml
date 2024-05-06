@@ -47,7 +47,7 @@ externalsecrets:
   tenantappargocdnamespace: tenant-apps
   webhookexternalsecretname: webhook-secret
   pipelinesnamespace: devops
-  pipelinessecretname: pipelines-secret
+  pipelinesecretname: pipelines-secret
   gitreposecret: git-secret
   
 
