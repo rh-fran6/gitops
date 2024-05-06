@@ -53,6 +53,7 @@ platformApplications:
     argocdNamespace: openshift-gitops
     applicationProject: devops
     applicationNamespace: openshift-pipelines
+    replace: false
 
   - appName: external-secrets
     repoUrl: https://github.com/rh-fran6/gitops.git
@@ -60,6 +61,7 @@ platformApplications:
     argocdNamespace: openshift-gitops
     applicationProject: security
     applicationNamespace: external-secrets-operator
+    replace: false
 
   - appName: argocd-image-updater
     repoUrl: https://github.com/rh-fran6/gitops.git
@@ -67,6 +69,7 @@ platformApplications:
     argocdNamespace: openshift-gitops
     applicationProject: devops
     applicationNamespace: openshift-gitops
+    replace: false
   
   - appName: kyverno
     repoUrl: https://github.com/rh-fran6/gitops.git
@@ -74,6 +77,7 @@ platformApplications:
     argocdNamespace: openshift-gitops
     applicationProject: security
     applicationNamespace: openshift-gitops
+    replace: true
 
 tenantApplications:
   - appName: demo-pipeline-app-frontend

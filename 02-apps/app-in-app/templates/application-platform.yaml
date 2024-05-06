@@ -16,7 +16,14 @@ spec:
       targetRevision: {{ $value.branch }}
       path: 02-apps/apps-in-app/platform/{{ $value.appName }}
   syncPolicy:
-    automated: {}
+    automated: 
+      prune: true
+      selfHeal: true
+    {{ if $value.replace }}
+    syncOptions:
+      - Replace=true
+      - CreateNamespace=true
+    {{- end }}
     retry:
       limit: 20
 ---
