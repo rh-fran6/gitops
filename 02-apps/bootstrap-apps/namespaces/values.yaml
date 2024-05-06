@@ -1,6 +1,6 @@
 
 platformNamespaces:
-  managedBy: platform-hub
+  managedBy: openshift-gitops
   namespaceNames:
   ## Operator Namespaces ##
   - name: external-secrets-operator
@@ -29,7 +29,7 @@ tenantNamespaces:
 sharedNamespaces:
   namespaceNames:
   - name: shared
-    managedBy: shared
+    managedBy: tenant-argo-ns
 
 
 

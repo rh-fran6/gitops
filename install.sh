@@ -65,7 +65,7 @@ echo "Starting cluster bootstrap..."
 
 echo ""
 
-helm upgrade --install cluster-bootstrap 00-gitops-bootstrap/bootstrap -n default
+helm upgrade --install cluster-bootstrap 01-bootstrap -n default
 
 echo ""
 

@@ -5,15 +5,15 @@ global:
 
 projects:
   - name: devops
-    namespace: platform-hub
+    namespace: openshift-gitops
   - name: platform-config
-    namespace: platform-hub
+    namespace: openshift-gitops
   - name: rbac
-    namespace: platform-hub
+    namespace: openshift-gitops
   - name: miscellaneous
-    namespace: platform-hub
+    namespace: openshift-gitops
   - name: security
-    namespace: platform-hub
+    namespace: openshift-gitops
   - name: tenant-A
     namespace: tenant-argo-ns
   - name: tenant-B
@@ -21,38 +21,38 @@ projects:
   - name: tenant-C
     namespace: tenant-argo-ns
   - name: shared-services
-    namespace: shared
+    namespace: tenant-argo-ns
 
 argocd:
-  - name: platform-hub
-    namespace: platform-hub
+  # - name: platform-hub
+  #   namespace: platform-hub
   - name: tenant
     namespace: tenant-argo-ns
-  - name: shared
-    namespace: shared
+  # - name: shared
+  #   namespace: shared
 
 platformApplications:
   ##  Applications in platform-admin namespace
   - appName: openshift-pipelines
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
-    argocdNamespace: platform-hub
+    argocdNamespace: openshift-gitops
     applicationProject: devops
     applicationNamespace: openshift-pipelines
 
   - appName: external-secrets
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
-    argocdNamespace: platform-hub
+    argocdNamespace: openshift-gitops
     applicationProject: security
     applicationNamespace: external-secrets-operator
 
   - appName: argocd-image-updater
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
-    argocdNamespace: tenant
+    argocdNamespace: openshift-gitops
     applicationProject: devops
-    applicationNamespace: tenant
+    applicationNamespace: openshift-gitops
 
 tenantApplications:
   - appName: demo-pipeline-app-frontend
@@ -83,7 +83,7 @@ sharedApplications:
   - appName: shared-services
     repoUrl: https://github.com/rh-fran6/gitops.git
     branch: main
-    argocdNamespace: shared
+    argocdNamespace: tenant-argo-ns
     applicationProject: shared-services
     applicationNamespace: shared
     path: shared/postgresql
