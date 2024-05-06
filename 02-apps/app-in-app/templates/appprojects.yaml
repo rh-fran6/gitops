@@ -19,7 +19,7 @@ spec:
   namespaceResourceWhitelist:
   - group: '*'
     kind: '*'
-  soureRepos:
+  sourceRepos:
   {{- range $kk, $vv := $v.sourcerepos }}
   - {{ $vv }}
   {{- end }}
